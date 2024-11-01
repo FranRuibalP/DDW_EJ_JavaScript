@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida Personalizada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+        #mensajeBienvenida, #mensajeDias {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Bienvenida Personalizada</h2>
+    
+    <div id="formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required>
+        
+        <label for="fechaNacimiento">Fecha de Nacimiento (AAAA-MM-DD):</label>
+        <input type="date" id="fechaNacimiento" required>
+        
+        <button onclick="mostrarBienvenida()">Enviar</button>
+    </div>
+    
+    <div id="mensajeBienvenida"></div>
+    <div id="mensajeDias"></div>
+
+    <script>
+        function mostrarBienvenida() {
+            // Obtener valores ingresados
+            const nombre = document.getElementById("nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+
+            // Mostrar mensaje de bienvenida
+            const mensajeBienvenida = `¡Bienvenido, ${nombre} ${apellido}!`;
+            document.getElementById("mensajeBienvenida").innerText = mensajeBienvenida;
+
+            // Calcular días vividos
+            const fechaNacimientoDate = new Date(fechaNacimiento);
+            const hoy = new Date();
+            const diferenciaTiempo = hoy - fechaNacimientoDate;
+            const diasVividos = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+
+            // Mostrar mensaje con los días vividos
+            const mensajeDias = `Has vivido aproximadamente ${diasVividos} días.`;
+            document.getElementById("mensajeDias").innerText = mensajeDias;
+        }
+    </script>
+
+</body>
+</html>
